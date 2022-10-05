@@ -17,7 +17,7 @@ class SignController < ApplicationController
         redirect_to home_path
       else
         flash[:notice] = "not exist"
-        render action: :signin_form
+        redirect_to action: :signin_form
       end
     
     end
@@ -37,7 +37,7 @@ class SignController < ApplicationController
         flash[:notice] = "success signup"
         redirect_to home_path
       else
-        render action: :signup_form
+        redirect_to action: :signup_form
       end
     
     end
