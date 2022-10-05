@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <% if @current_user %>
+        <div class="header">
+          <div class="header-top">
+            <div class="header-logo">
+              <%= link_to "myapp", home_path %>
+            </div>
+            <ul class="header-menu">
+              <li><%= link_to "#{@current_user.name}さん", profile_path%></li>
+              <li>
+                <%= form_with url: logout_path, local: true do |f| %>
+                  <% f.submit "logout" %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <ul class="header-bottom">
+            <li><%= link_to "talk room list", talk_path %></li>
+            <li><%= link_to "schedule regist", schedule_1_path %></li>
+            <li><%= link_to "team create", team_create_path %></li>
+            <li><%= link_to "team search", match_path %></li>
+          </ul>
+          <% if TeamUser.where(user_id: @current_user.id).count > 1 %>
+            <%= form_with url: team_change_path, local: true do |f| %>
+              <%= f.collection_select :team_id, @teams_of_current_user, :id, :name %>
+              <%= f.submit "change" %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= notice %>
+    </header>
+    <%= yield %>
+  </body>
+</html>

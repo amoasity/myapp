@@ -1,0 +1,2 @@
+class FirstSchedule < ApplicationRecord
+end

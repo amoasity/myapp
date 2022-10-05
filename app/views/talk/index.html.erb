@@ -1,0 +1,9 @@
+<% @talk_rooms_of_teammate.each do |talk_room_of_teammate| %>
+    <%= link_to "talk room of #{Team.find_by(id: talk_room_of_teammate.team_id).name}", "talk_room/#{talk_room_of_teammate.id}" %>
+<% end %>
+<% @talk_rooms_of_applyer_captain.each do |talk_room_of_applyer_captain| %>
+    <%= link_to "talk room with #{Team.find_by(id: talk_room_of_applyer_captain.receiver_team_id).name}", "talk_room/#{talk_room_of_applyer_captain.id}" %>
+<% end %>
+<% @talk_rooms_of_receiver_captain.each do |talk_room_of_receiver_captain| %>
+    <%= link_to "talk room with #{Team.find_by(id: talk_room_of_receiver_captain.applyer_team_id).name}", "talk_room/#{talk_room_of_receiver_captain.id}" %>
+<% end %>

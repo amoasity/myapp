@@ -1,0 +1,15 @@
+<%= @team.name %>
+<%= @team.active_area %>
+<%= @team.average_age %>
+<% if !@team_ids.include?(@team.id) %>
+    <%= form_with url: "/team/join/#{@team.id}", local: true do |f| %>
+        <% f.submit "join" %>
+    <% end %>
+    <% if @current_team %>
+        <% if @current_team.captain_id == @current_user.id %>
+            <%= form_with url: "/talk_of/teams/#{@team.id}", local: true do |f| %>
+                <%= f.submit "talk" %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

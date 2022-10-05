@@ -1,0 +1,6 @@
+<h1><%= @current_user.name %></h1>
+<% if @teams_of_current_user != [] %>
+    <% @teams_of_current_user.each do |team_of_current_user| %>
+        <p><%= team_of_current_user.name %></p>
+    <% end %>
+<% end %>

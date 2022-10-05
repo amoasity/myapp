@@ -1,0 +1,9 @@
+<%= form_with url: "/signup", local: true do |f| %>
+    <%= f.label :name, "name" %>
+    <p><%= f.text_field :name %></p>
+    <%= f.label :email, "email" %>
+    <p><%= f.email_field :email %></p>
+    <%= f.label :password_digest, "password" %>
+    <p><%= f.password_field :password_digest %></p>
+    <%= f.submit "singup" %>
+<% end %>

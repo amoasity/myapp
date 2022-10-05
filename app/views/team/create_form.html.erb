@@ -1,0 +1,9 @@
+<%= form_with url: "/team/create", local: true do |f|%>
+    <%= f.label :naem, "name" %>
+    <p><%= f.text_field :name %></p>
+    <%= f.label :average_age, "average age" %>
+    <p><%= f.number_field :average_age %></p>
+    <%= f.label :active_area, "active area" %>
+    <p><%= f.select :active_area, Team.active_areas.keys %></p>
+    <%= f.submit "create" %>
+<% end %>

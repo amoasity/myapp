@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  captain_id: 1
+  average_age: 1
+  active_area: 1
+
+two:
+  name: MyString
+  captain_id: 1
+  average_age: 1
+  active_area: 1

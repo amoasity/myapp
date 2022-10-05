@@ -1,0 +1,12 @@
+<div class="signin_form">
+    <%= form_with url: "", local: true do |f| %>
+        <div class="signin">
+            <%= f.label :email, "email" %>
+            <p><%= f.email_field :email %></p>
+        </div>
+        <%= f.label :password_digest, "password" %>
+        <p><%= f.password_field :password_digest %></p>
+        <%= f.submit "singin" %>
+    <% end %>
+    <%= link_to("sign up", "signup") %>
+</div>

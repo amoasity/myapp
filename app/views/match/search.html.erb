@@ -1,0 +1,14 @@
+<%= form_with url: match_path, method: :get, local: true do |f| %>
+    <%= f.text_field :name%>
+    <%= f.select :active_area, Team.active_areas.keys %>
+    <%= f.date_field("date", min: @tomorrow, max: @end_of_next_month, size: "30") %>
+    <%= f.submit "search" %>
+<% end %>
+<% if @teams && @teams != [] %>
+    <% @teams.each do |team| %>
+        <h1><%= link_to(team.name, "/team/#{team.id}") %></h1>
+        <p><%= team.active_area %></p>
+    <% end %>
+<% else %>
+    <h1>not exiting</h1>
+<% end %>
