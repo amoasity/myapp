@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
   <body>
@@ -28,10 +29,10 @@
             </ul>
           </div>
           <ul class="header-bottom">
-            <li><%= link_to "talk room list", talk_path %></li>
-            <li><%= link_to "schedule regist", schedule_1_path %></li>
-            <li><%= link_to "team create", team_create_path %></li>
             <li><%= link_to "team search", match_path %></li>
+            <li><%= link_to "team create", team_create_path %></li>
+            <li><%= link_to "schedule regist", schedule_1_path %></li>
+            <li><%= link_to "talk room list", talk_path %></li>
           </ul>
           <% if TeamUser.where(user_id: @current_user.id).count > 1 %>
             <%= form_with url: team_change_path, local: true do |f| %>
@@ -41,8 +42,14 @@
           <% end %>
         </div>
       <% end %>
-      <%= notice %>
     </header>
-    <%= yield %>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>  
+      </div>
+    <% end %>
+    <div class="main">
+      <%= yield %>
+    </div>
   </body>
 </html>

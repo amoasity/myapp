@@ -1,9 +1,16 @@
+<h1>チームを作る</h1>
 <%= form_with url: "/team/create", local: true do |f|%>
-    <%= f.label :naem, "name" %>
-    <p><%= f.text_field :name %></p>
-    <%= f.label :average_age, "average age" %>
-    <p><%= f.number_field :average_age %></p>
-    <%= f.label :active_area, "active area" %>
-    <p><%= f.select :active_area, Team.active_areas.keys %></p>
-    <%= f.submit "create" %>
+    <p>
+    <%= f.label :naem, "チーム名" %>
+    <%= f.text_field :name %>
+    </p>
+    <p>
+    <%= f.label :average_age, "平均年齢" %>
+    <%= f.number_field :average_age %>
+    </p>
+    <p>
+    <%= f.label :active_area, "活動範囲" %>
+    <%= f.select :active_area, Team.active_areas.keys %>
+    </p>
+    <%= f.submit "作成" %>
 <% end %>

@@ -21,30 +21,46 @@
  
   a {
     text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    color: red;
   }
  
   .main {
    margin: 0px 250px;
   }
+
+  .header-logo {
+    display: inline-block;
+  }
   
-  /* .header-logo a {
-    float: left;
-    color: black;
+  .header-logo a {
+    margin-left: 250px;
+    color: darkgreen;
     font-size: 40px;
   }
+
   .header-menu {
     float: right;
+    margin-right: 250px;
   }
+
   .header-menu li {
     float: left;
     margin-left: 15px;
   }
+
   .header-bottom {
-    display: block;
+    margin: 0px;
+    height: 40px;
+    padding: 0px 250px;
+    background-color: green;
+  }
+
+  .header-bottom li {
+    margin-top: 10px;
+    margin-right: 15px;
     float: left;
   }
-  .header-bottom li {
-   float: right;
-   margin-right: 15px;
-   background-color: aquamarine;
-  } */

@@ -10,6 +10,7 @@ class TalkController < ApplicationController
       teams_id_of_current_user_as_captain = teams_of_current_user_as_captain.pluck(:id)
       @talk_rooms_of_applyer_captain = TalkRoom.where(applyer_team_id: teams_id_of_current_user_as_captain)
       @talk_rooms_of_receiver_captain = TalkRoom.where(receiver_team_id: teams_id_of_current_user_as_captain)
+      pp @talk_rooms_of_teammate
     end
   
     def between_teams_room

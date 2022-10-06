@@ -72,3 +72,5 @@ group :test do
 end
 
 gem 'whenever', require: false
+
+gem 'jquery-rails'
