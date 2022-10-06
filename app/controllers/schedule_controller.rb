@@ -2,6 +2,7 @@ class ScheduleController < ApplicationController
 
     before_action :have_to_login
     before_action :current_team
+    before_action :have_to_create_team
     
     def between_team_schedule_form
       if @current_team && @current_team.captain_id == @current_user.id
@@ -13,8 +14,8 @@ class ScheduleController < ApplicationController
         @schedule1 = FirstSchedule.find_by(team_id: @current_team.id)
         @schedule2 = SecondSchedule.find_by(team_id: @current_team.id)
       else
-        flash[:notice] = "have to create team"
-        render template: "/team/create_form"
+        flash[:notice] = "あなたはキャプテンではありません"
+        redirect_to team_create_path
       end
     end
   

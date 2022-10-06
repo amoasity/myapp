@@ -1,9 +1,23 @@
-<%= form_with url: "/signup", local: true do |f| %>
-    <%= f.label :name, "name" %>
-    <p><%= f.text_field :name %></p>
-    <%= f.label :email, "email" %>
-    <p><%= f.email_field :email %></p>
-    <%= f.label :password_digest, "password" %>
-    <p><%= f.password_field :password_digest %></p>
-    <%= f.submit "singup" %>
-<% end %>
+<div class="sign_form">
+    <div class="sign_h1">
+        <h1>signup</h1>
+    </div>
+    <%= form_with url: "/signup", local: true do |f| %>
+        <div class="sign_name">
+            <%= f.label :name, "name" %>
+            <p><%= f.text_field :name %></p>
+        </div>
+        <div class="sign_email">
+            <%= f.label :email, "email" %>
+            <p><%= f.email_field :email %></p>
+        </div>
+        <div class="sign_password">
+            <%= f.label :password_digest, "password" %>
+            <p><%= f.password_field :password_digest %></p>
+        </div>
+        <div class="sign_btn">
+            <%= f.submit "singup" %>
+        </div>
+    <% end %>
+    <%= link_to("signin", "/") %>
+</div>

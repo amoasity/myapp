@@ -4,6 +4,7 @@ class MatchController < ApplicationController
     before_action :date_adj
     
     def search
+      pp @current_team
       @teams = Team.all
       @tomorrow = Date.today.tomorrow
       @end_of_next_month = Date.today.next_month.end_of_month

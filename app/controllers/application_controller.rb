@@ -25,6 +25,13 @@ class ApplicationController < ActionController::Base
         end
     end 
 
+    def have_to_create_team
+        if @current_team == nil
+            flash[:notice] = "チームに所属していません"
+            redirect_to team_create_path
+        end
+    end
+
     def teams_of_current_user
         if @current_user
             teamusers = TeamUser.where(user_id: @current_user.id)
