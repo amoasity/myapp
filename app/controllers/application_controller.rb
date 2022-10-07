@@ -50,4 +50,10 @@ class ApplicationController < ActionController::Base
           }
     end
 
+    def variable
+        @tomorrow = Date.today.tomorrow
+        @end_of_month = Date.today.end_of_month
+        @end_of_next_month = Date.today.next_month.end_of_month
+    end
+
 end

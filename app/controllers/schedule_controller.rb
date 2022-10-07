@@ -3,14 +3,12 @@ class ScheduleController < ApplicationController
     before_action :have_to_login
     before_action :current_team
     before_action :have_to_create_team
+    before_action :variable
     
     def between_team_schedule_form
       if @current_team && @current_team.captain_id == @current_user.id
-        @tomorrow = Date.today.mday + 1
-        @end_of_month = Date.today.end_of_month.mday
-        @end_of_next_month = Date.today.next_month.end_of_month.mday
-        @range1 = @tomorrow..@end_of_month
-        @range2 = 1..@end_of_next_month
+        @range1 = @tomorrow.mday..@end_of_month.mday
+        @range2 = 1..@end_of_next_month.mday
         @schedule1 = FirstSchedule.find_by(team_id: @current_team.id)
         @schedule2 = SecondSchedule.find_by(team_id: @current_team.id)
       else
@@ -20,11 +18,8 @@ class ScheduleController < ApplicationController
     end
   
     def in_team_schedule_form
-      @tomorrow = Date.today.mday + 1
-      @end_of_month = Date.today.end_of_month.mday
-      @end_of_next_month = Date.today.next_month.end_of_month.mday
-      @range1 = @tomorrow..@end_of_month
-      @range2 = 1..@end_of_next_month
+      @range1 = @tomorrow.mday..@end_of_month.mday
+      @range2 = 1..@end_of_next_month.mday
       @schedule1 = FirstSchedule.find_by(team_id: @current_team.id)
       @schedule2 = SecondSchedule.find_by(team_id: @current_team.id)
     end
