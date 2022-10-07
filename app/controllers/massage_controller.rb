@@ -1,6 +1,7 @@
 class MassageController < ApplicationController
 
     before_action :current_team
+    before_action :teams_of_current_user_apart_from_current_team
 
     def room
       @talk_room_id = params[:id].to_i

@@ -4,6 +4,7 @@ class ScheduleController < ApplicationController
     before_action :current_team
     before_action :have_to_create_team
     before_action :variable
+    before_action :teams_of_current_user_apart_from_current_team
     
     def between_team_schedule_form
       if @current_team && @current_team.captain_id == @current_user.id

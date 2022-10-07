@@ -4,6 +4,7 @@ class MatchController < ApplicationController
     before_action :date_adj
     before_action :variable
     before_action :teams_of_current_user
+    before_action :teams_of_current_user_apart_from_current_team
     
     def search
       @teams = Team.all

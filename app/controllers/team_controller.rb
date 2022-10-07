@@ -2,6 +2,7 @@ class TeamController < ApplicationController
 
     before_action :have_to_login
     before_action :current_team
+    before_action :teams_of_current_user_apart_from_current_team
   
     def create_form
     end
