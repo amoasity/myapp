@@ -25,7 +25,7 @@ class TeamController < ApplicationController
         )
         if @team_user.save && @talk_room.save
           flash[:notice] = "success create"
-          redirect_to("/match")
+          redirect_to("/home")
         else
           flash[:notice] = "fail create"
           render("/team/create")

@@ -38,7 +38,15 @@ class ApplicationController < ActionController::Base
             teams_id_of_current_user = teamusers.pluck(:team_id)
             @teams_of_current_user = Team.where(id: teams_id_of_current_user)
         end
-    end 
+    end
+
+    def teams_of_current_user_apart_from_current_team
+        if @current_user && @current_team
+            teamusers = TeamUser.where(user_id: @current_user.id).where("team_id != ?", @current_team.id)
+            teams_id_of_current_user_apart_from_current_team = teamusers.pluck(:team_id)
+            @teams_of_current_user_apart_from_current_team = Team.where(id: teams_id_of_current_user_apart_from_current_team)
+        end
+    end
     
     def date_adj
         @date_hash = {

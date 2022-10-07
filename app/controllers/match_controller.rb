@@ -3,6 +3,7 @@ class MatchController < ApplicationController
     before_action :current_team
     before_action :date_adj
     before_action :variable
+    before_action :teams_of_current_user
     
     def search
       @teams = Team.all

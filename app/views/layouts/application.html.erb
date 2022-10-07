@@ -24,6 +24,14 @@
             <ul class="header-menu">
               <li><%= link_to "#{@current_user.name}さん", profile_path%></li>
               <li>
+                <% if TeamUser.where(user_id: @current_user.id).count > 1 %>
+                  <%= form_with url: team_change_path, local: true do |f| %>
+                    <%= f.collection_select :team_id, @teams_of_current_user_apart_from_current_team, :id, :name, {prompt: "#{@current_team.name}"} %>
+                    <%= f.submit "change" %>
+                  <% end %>
+                <% end %>
+              </li>
+              <li>
                 <%= form_with url: logout_path, local: true do |f| %>
                   <% f.submit "logout" %>
                 <% end %>
@@ -36,12 +44,6 @@
             <li><%= link_to "日程登録", schedule_1_path %></li>
             <li><%= link_to "トークリスト", talk_path %></li>
           </ul>
-          <% if TeamUser.where(user_id: @current_user.id).count > 1 %>
-            <%= form_with url: team_change_path, local: true do |f| %>
-              <%= f.collection_select :team_id, @teams_of_current_user, :id, :name %>
-              <%= f.submit "change" %>
-            <% end %>
-          <% end %>
         </div>
       <% end %>
     </header>
