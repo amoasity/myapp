@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   post 'team/change', to: 'team#change'
   get 'match', to: 'match#search'
   get 'talk', to: 'talk#index'
-  get 'talk_room/:id', to: 'massage#room'
-  post 'talk_of/teams/:id', to: 'talk#between_teams_room'
-  post 'massage/create/:id', to: 'massage#create'
+  get 'room/:id', to: 'talk#room'
+  post 'talk/new/:id', to: 'talk#new'
+  post 'massage/create/:id', to: 'talk#create'
   get 'profile', to: 'profile#show'
   post 'logout', to: 'sign#logout'
 

@@ -10,9 +10,16 @@ class SignController < ApplicationController
         email: params[:email],
         password_digest: params[:password_digest]
       )
-    
+      if TeamUser.where(user_id: @user.id).first
+        team = Team.find_by(id: TeamUser.where(user_id: @user.id).first.team_id)
+        session[:team_id] = team.id
+      end
       if @user
         session[:user_id] = @user.id
+        if TeamUser.where(user_id: @user.id).first
+          team = Team.find_by(id: TeamUser.where(user_id: @user.id).first.team_id)
+          session[:team_id] = team.id
+        end
         flash[:notice] = "success signin"
         redirect_to home_path
       else

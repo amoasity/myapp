@@ -11,10 +11,9 @@ class TalkController < ApplicationController
       teams_id_of_current_user_as_captain = teams_of_current_user_as_captain.pluck(:id)
       @talk_rooms_of_applyer_captain = TalkRoom.where(applyer_team_id: teams_id_of_current_user_as_captain)
       @talk_rooms_of_receiver_captain = TalkRoom.where(receiver_team_id: teams_id_of_current_user_as_captain)
-      pp @talk_rooms_of_teammate
     end
   
-    def between_teams_room
+    def new
       talk_room = TalkRoom.new(
         status: 1,
         applyer_team_id: @current_team.id,
@@ -26,6 +25,25 @@ class TalkController < ApplicationController
       else
         flash[:notice] = "fail"
         redirect_back(fallback_location: "/team/#{params[:id]}")
+      end
+    end
+
+    def room
+      @talk_room_id = params[:id].to_i
+      @massages = Massage.where(talk_room_id: @talk_room_id)
+      session[:team_id] = Team.find_by(id: TalkRoom.find_by(id: @talk_room_id).team_id).id
+    end
+  
+    def create
+      @massage = Massage.new(
+        user_id: @current_user.id,
+        talk_room_id: params[:id],
+        content: params[:content]
+      )
+      if @massage.save
+        redirect_back fallback_location: "talk_room/#{@talk_room_id}"
+      else
+        render action: :room
       end
     end
 
