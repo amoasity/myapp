@@ -101,7 +101,7 @@ class ScheduleController < ApplicationController
       )
       if @dates1.save && @dates2.save
         flash[:notice] = "登録しました"
-        redirect_to("/match")
+        redirect_to match_path
       else
         falsh[:notice] = "登録に失敗しました"
         render action: :schedule
