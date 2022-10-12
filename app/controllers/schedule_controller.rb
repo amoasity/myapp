@@ -6,7 +6,7 @@ class ScheduleController < ApplicationController
     before_action :variable
     before_action :teams_of_current_user_apart_from_current_team
     
-    def between_team_schedule_form
+    def team_schedule
       if @current_team && @current_team.captain_id == @current_user.id
         @range1 = @tomorrow.mday..@end_of_month.mday
         @range2 = 1..@end_of_next_month.mday
@@ -18,7 +18,7 @@ class ScheduleController < ApplicationController
       end
     end
   
-    def in_team_schedule_form
+    def teammate_schedule
       @range1 = @tomorrow.mday..@end_of_month.mday
       @range2 = 1..@end_of_next_month.mday
       @schedule1 = FirstSchedule.find_by(team_id: @current_team.id)

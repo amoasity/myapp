@@ -1,0 +1,48 @@
+<h1>チームスケジュール</h1>
+<div class="schedule">
+    <%= form_with url: "/schedule/1", local: true do |f| %>
+        <% if @schedule1 == nil && @schedule2 == nil %>
+            <% if @tomorrow.mday < 25 %>
+                <h2><%= Date.today.year %>/<%= Date.today.month %></h2>
+                <% @range1.each do |date1| %>
+                    <p>
+                    <%= date1 %>日
+                    <input type="radio" name="<%= date1 %>_1" value=1>いける
+                    <input type="radio" name="<%= date1 %>_1" value=0>いけそう
+                    </p>
+                <% end %>
+            <% end %>
+            <h2><%= Date.today.year %>/<%= Date.today.next_month.month %></h2>
+            <% @range2.each do |date2| %>
+                <p>
+                <%= date2 %>日
+                <input type="radio" name="<%= date2 %>_2" value=1>いける
+                <input type="radio" name="<%= date2 %>_2" value=0>いけそう
+                </p>
+            <% end %>
+            <input type="submit" value="regist">
+        <% elsif @schedule1 == nil && @schedule2 != nil %>
+            <h2><%= Date.today.year %>/<%= Date.today.next_month.month %></h2>
+            <% @range2.each do |date2| %>
+                <p>
+                <%= date2 %>日
+                <input type="radio" name="<%= date2 %>_1" value=1>いける
+                <input type="radio" name="<%= date2 %>_1" value=0>いけそう
+                </p>
+            <% end %>
+            <input type="submit" value="regist">
+        <% elsif @schedule1 != nil && @schedule2 == nil %>
+            <h2><%= Date.today.year %>/<%= Date.today.next_month.month %></h2>
+            <% @range2.each do |date2| %>
+                <p>
+                <%= date2 %>日
+                <input type="radio" name="<%= date2 %>_2" value=1>いける
+                <input type="radio" name="<%= date2 %>_2" value=0>いけそう
+                </p>
+            <% end %>
+            <input type="submit" value="regist">
+        <% else %>
+            <h1>you are already registed</h1>
+        <% end %>
+    <% end %>
+</div>
