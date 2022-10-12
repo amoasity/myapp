@@ -60,8 +60,12 @@ class ApplicationController < ActionController::Base
 
     def variable
         @tomorrow = Date.today.tomorrow
+        @this_month = Date.today.month
         @end_of_month = Date.today.end_of_month
         @end_of_next_month = Date.today.next_month.end_of_month
+        @range1 = @tomorrow.mday..@end_of_month.mday
+        @range2 = 1..@end_of_next_month.mday
+        @day_of_week = ["日", "月", "火", "水", "木", "金", "土"]
     end
 
 end

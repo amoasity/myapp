@@ -1,12 +1,13 @@
 <h1>チームスケジュール</h1>
 <div class="schedule">
     <%= form_with url: "/schedule/1", local: true do |f| %>
-        <% if @schedule1 == nil && @schedule2 == nil %>
+        <% if FirstSchedule.find_by(team_id: @current_team.id) == nil &&SecondSchedule.find_by(team_id: @current_team.id) == nil %>
             <% if @tomorrow.mday < 25 %>
                 <h2><%= Date.today.year %>/<%= Date.today.month %></h2>
                 <% @range1.each do |date1| %>
+                    <% i = Date.new(Date.today.year, Date.today.month, date1) %>
                     <p>
-                    <%= date1 %>日
+                    <%= date1 %>日（<%= @day_of_week[i.wday] %>）
                     <input type="radio" name="<%= date1 %>_1" value=1>いける
                     <input type="radio" name="<%= date1 %>_1" value=0>いけそう
                     </p>
@@ -14,28 +15,43 @@
             <% end %>
             <h2><%= Date.today.year %>/<%= Date.today.next_month.month %></h2>
             <% @range2.each do |date2| %>
+                <% if @this_month = 12 %>
+                    <% i = Date.new(Date.today.next_month.year, Date.today.next_month.month, date2) %>
+                <% else %>
+                    <% i = Date.new(Date.today.year, Date.today.next_month.month, date2) %>
+                <% end %>
                 <p>
-                <%= date2 %>日
+                <%= date2 %>日（<%= @day_of_week[i.wday] %>）
                 <input type="radio" name="<%= date2 %>_2" value=1>いける
                 <input type="radio" name="<%= date2 %>_2" value=0>いけそう
                 </p>
             <% end %>
             <input type="submit" value="regist">
-        <% elsif @schedule1 == nil && @schedule2 != nil %>
+        <% elsif FirstSchedule.find_by(team_id: @current_team.id) == nil && SecondSchedule.find_by(team_id: @current_team.id) != nil %>
             <h2><%= Date.today.year %>/<%= Date.today.next_month.month %></h2>
             <% @range2.each do |date2| %>
+                <% if @this_month = 12 %>
+                    <% i = Date.new(Date.today.next_year.year, Date.today.next_month.month, date2) %>
+                <% else %>
+                    <% i = Date.new(Date.today.year, Date.today.next_month.month, date2) %>
+                <% end %>
                 <p>
-                <%= date2 %>日
+                <%= date2 %>日（<%= @day_of_week[i.wday] %>）
                 <input type="radio" name="<%= date2 %>_1" value=1>いける
                 <input type="radio" name="<%= date2 %>_1" value=0>いけそう
                 </p>
             <% end %>
             <input type="submit" value="regist">
-        <% elsif @schedule1 != nil && @schedule2 == nil %>
+        <% elsif FirstSchedule.find_by(team_id: @current_team.id) != nil && SecondSchedule.find_by(team_id: @current_team.id) == nil %>
             <h2><%= Date.today.year %>/<%= Date.today.next_month.month %></h2>
             <% @range2.each do |date2| %>
+                <% if @this_month = 12 %>
+                    <% i = Date.new(Date.today.next_year.year, Date.today.next_month.month, date2) %>
+                <% else %>
+                    <% i = Date.new(Date.today.year, Date.today.next_month.month, date2) %>
+                <% end %>
                 <p>
-                <%= date2 %>日
+                <%= date2 %>日（<%= @day_of_week[i.wday] %>）
                 <input type="radio" name="<%= date2 %>_2" value=1>いける
                 <input type="radio" name="<%= date2 %>_2" value=0>いけそう
                 </p>

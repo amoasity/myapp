@@ -8,10 +8,6 @@ class ScheduleController < ApplicationController
     
     def team_schedule
       if @current_team && @current_team.captain_id == @current_user.id
-        @range1 = @tomorrow.mday..@end_of_month.mday
-        @range2 = 1..@end_of_next_month.mday
-        @schedule1 = FirstSchedule.find_by(team_id: @current_team.id)
-        @schedule2 = SecondSchedule.find_by(team_id: @current_team.id)
       else
         flash[:notice] = "あなたはキャプテンではありません"
         redirect_to team_create_path
@@ -19,24 +15,18 @@ class ScheduleController < ApplicationController
     end
   
     def teammate_schedule
-      @range1 = @tomorrow.mday..@end_of_month.mday
-      @range2 = 1..@end_of_next_month.mday
-      @schedule1 = FirstSchedule.find_by(team_id: @current_team.id)
-      @schedule2 = SecondSchedule.find_by(team_id: @current_team.id)
     end
   
     def schedule
-      this_month = Date.today.month
-      @schedule1 = FirstSchedule.find_by(team_id: @current_team.id)
-      @schedule2 = SecondSchedule.find_by(team_id: @current_team.id)
-      if @schedule1 == nil && @schedule2 == nil
-        month1 = this_month
-        month2 = this_month + 1
+      if FirstSchedule.find_by(team_id: @current_team.id) == nil && SecondSchedule.find_by(team_id: @current_team.id) == nil
+        month1 = Date.today.month
+        month2 = Date.today.month + 1
       else
-        month1 = this_month + 1
-        month2 = this_month + 1
+        month1 = Date.today.month + 1
+        month2 = Date.today.month + 1
       end 
       @dates1 = FirstSchedule.new(
+        user_id: @current_user.id,
         team_id: @current_team.id,
         month: month1,
         fir: params[:"1_1"],
@@ -70,10 +60,10 @@ class ScheduleController < ApplicationController
         twe_nin: params[:"29_1"],
         thirtieth:params[:"30_1"],
         thi_fir: params[:"31_1"],
-        status: params[:id],
-        user_id: @current_user.id
+        status: params[:id]
       )
       @dates2 = SecondSchedule.new(
+        user_id: @current_user.id,
         team_id: @current_team.id,
         month: month2,
         fir: params[:"1_2"],
@@ -107,14 +97,13 @@ class ScheduleController < ApplicationController
         twe_nin: params[:"29_2"],
         thirtieth:params[:"30_2"],
         thi_fir: params[:"31_2"],
-        status: params[:id],
-        user_id: @current_user.id
+        status: params[:id]
       )
       if @dates1.save && @dates2.save
-        flash[:notice] = "success regist"
+        flash[:notice] = "登録しました"
         redirect_to("/match")
       else
-        falsh[:notice] = "fail regist"
+        falsh[:notice] = "登録に失敗しました"
         render action: :schedule
       end
     end
