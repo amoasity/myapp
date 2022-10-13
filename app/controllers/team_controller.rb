@@ -13,8 +13,7 @@ class TeamController < ApplicationController
         captain_id: @current_user.id,
         average_age: params[:average_age],
         active_area: params[:active_area],
-        overview: params[:overview],
-        power: params[:average_age] * 100
+        overview: params[:overview]
       )
       if @team.save
         session[:team_id] = @team.id
@@ -31,11 +30,11 @@ class TeamController < ApplicationController
           redirect_to("/home")
         else
           flash[:notice] = "fail create"
-          render("/team/create")
+          redirect_to("/team/create")
         end
       else
         flash[:notice] = "fail create"
-        render("/team/create")
+        redirect_to("/team/create")
       end
     end
   
