@@ -12,8 +12,7 @@ class TeamController < ApplicationController
         name: params[:name],
         captain_id: @current_user.id,
         average_age: params[:average_age],
-        active_area: params[:active_area],
-        overview: params[:overview]
+        active_area: params[:active_area]
       )
       if @team.save
         session[:team_id] = @team.id

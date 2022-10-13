@@ -12,9 +12,11 @@
     <%= f.label :active_area, "活動範囲" %>
     <%= f.select :active_area, Team.active_areas.keys %>
     </p>
+    <!--
     <p>
     <%= f.label :overview, "概要" %>
     <%= f.text_field :overview %>
     </p>
+    -->
     <%= f.submit "作成" %>
 <% end %>
