@@ -21,7 +21,7 @@ class TalkController < ApplicationController
       ) 
       if talk_room.save
         flash[:notice] = "試合予定を立てましょう"
-        redirect_to("/talk_room/#{params[:id]}")
+        redirect_to("/room/#{params[:id]}")
       else
         flash[:notice] = "失敗しました"
         redirect_back(fallback_location: "/team/#{params[:id]}")
