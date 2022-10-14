@@ -1,15 +1,16 @@
-<%= @team.name %>
-<%= @team.active_area %>
-<%= @team.average_age %>
-<% if !@team_ids.include?(@team.id) %>
+<p><%= @team.name %></p>
+<p><%= @team.active_area %></p>
+<p><%= @team.average_age %></p>
+<% @users.each do |user| %>
+    <%= user.name %>
+<% end %>
+<% if !@teams_id.include?(@team.id) %>
     <%= form_with url: "/team/join/#{@team.id}", local: true do |f| %>
         <% f.submit "join" %>
     <% end %>
-    <% if @current_team %>
-        <% if @current_team.captain_id == @current_user.id %>
-            <%= form_with url: "/talk/new/#{@team.id}", local: true do |f| %>
-                <%= f.submit "talk" %>
-            <% end %>
+    <% if @current_team && @current_team.captain_id == @current_user.id %>
+        <%= form_with url: "/talk/new/#{@team.id}", local: true do |f| %>
+            <%= f.submit "talk" %>
         <% end %>
     <% end %>
 <% end %>

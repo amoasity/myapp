@@ -39,11 +39,11 @@ class TeamController < ApplicationController
   
     def detail
       @team = Team.find_by(id: params[:id])
-      @team_ids = []
       teamusers = TeamUser.where(user_id: @current_user.id)
-      teamusers.each do |teamuser|
-        @team_ids.push(teamuser.team_id)
-      end
+      @teams_id = teamusers.pluck(:team_id)
+      teamuserss = TeamUser.where(team_id: params[:id])
+      users_id = teamuserss.pluck(:user_id)
+      @users = User.where(id: users_id)
     end
   
     def join
