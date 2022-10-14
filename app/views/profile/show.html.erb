@@ -1,6 +1,7 @@
 <h1><%= @current_user.name %></h1>
+<h3>所属チーム一覧</h3>
 <% if @teams_of_current_user != [] %>
     <% @teams_of_current_user.each do |team_of_current_user| %>
-        <p><%= team_of_current_user.name %></p>
+        <p><%= link_to team_of_current_user.name, "/team/#{team_of_current_user.id}" %></p>
     <% end %>
 <% end %>
