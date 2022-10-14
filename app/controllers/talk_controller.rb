@@ -31,7 +31,6 @@ class TalkController < ApplicationController
     def room
       @talk_room_id = params[:id].to_i
       @massages = Massage.where(talk_room_id: @talk_room_id)
-      session[:team_id] = Team.find_by(id: TalkRoom.find_by(id: @talk_room_id).team_id).id
     end
   
     def create
