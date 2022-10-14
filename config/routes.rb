@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'room/:id', to: 'talk#room'
   post 'talk/new/:id', to: 'talk#new'
   post 'massage/create/:id', to: 'talk#create'
-  get 'profile', to: 'profile#show'
+  get 'profile/:id', to: 'profile#show'
   post 'logout', to: 'sign#logout'
 
 end

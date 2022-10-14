@@ -1,8 +1,11 @@
-<p><%= @team.name %></p>
-<p><%= @team.active_area %></p>
-<p><%= @team.average_age %></p>
+<ul>
+    <li>チーム名:<%= @team.name %></li>
+    <li>平均年齢:<%= @team.average_age %></li>
+    <li>活動エリア:<%= @team.active_area %></li>
+</ul>
+<h3>チームメンバー</h3>
 <% @users.each do |user| %>
-    <%= user.name %>
+    <%= link_to user.name, "/profile/#{user.id}" %>
 <% end %>
 <% if !@teams_id.include?(@team.id) %>
     <%= form_with url: "/team/join/#{@team.id}", local: true do |f| %>
