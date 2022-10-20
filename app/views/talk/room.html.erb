@@ -1,8 +1,11 @@
 <%= stylesheet_link_tag "talk", "data-turbo-track": "reload" %>
-<%= form_with url: "/massage/create/#{@talk_room_id}" do |f| %>
-    <%= f.text_field :content %>
-    <%= f.submit "送信" %>
-<% end %>
+<div class="post-form">
+    <%= form_with url: "/massage/create/#{@talk_room_id}" do |f| %>
+        <%= f.text_field :content %>
+        <%= f.submit "送信" %>
+    <% end %>
+    <%= link_to "チームメイトスケジュール", schedule_teammate_path %>
+</div>
 <% @massages.each do |massage| %>
     <% if massage.user_id == @current_user.id %>
         <p><%= massage.content %></p>
@@ -10,6 +13,4 @@
         <p><%= User.find_by(id: massage.user_id).name %>/<%= massage.content %></p>
     <% end %>
 <% end %>
-<div class="teammate-schedule">
-    <%= link_to "チームメイトスケジュール", schedule_teammate_path %>
-</div>
+<%= link_to "チームメイトスケジュール", schedule_teammate_path %>
