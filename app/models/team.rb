@@ -17,4 +17,10 @@ class Team < ApplicationRecord
         沖縄県:47
       }
 
+    enum status:{
+      オープン:1,
+      承認制:2,
+      クローズ:3
+    }
+
 end
