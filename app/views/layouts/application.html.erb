@@ -27,7 +27,7 @@
                 <% if @current_team && TeamUser.where(user_id: @current_user.id).count > 1 %>
                   <%= form_with url: team_change_path, local: true do |f| %>
                     <%= f.collection_select :team_id, @teams_of_current_user_apart_from_current_team, :id, :name, {prompt: "#{@current_team.name}"} %>
-                    <%= f.submit "change" %>
+                    <%= f.submit "チームを変える" %>
                   <% end %>
                 <% end %>
               </li>
